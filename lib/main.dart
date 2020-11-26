@@ -28,6 +28,7 @@ class MyHomepage extends StatefulWidget {
 class _MyHomepageState extends State<MyHomepage> {
   final _controllerFullName = TextEditingController();
   final _controllerPhoneNumber = TextEditingController();
+  final _controllerAddress = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +50,12 @@ class _MyHomepageState extends State<MyHomepage> {
                   child: TextField(
                     decoration: InputDecoration(hintText: "Full Name"),
                     controller: _controllerFullName,
+                  ),
+                ),
+                Container(
+                  child: TextField(
+                    decoration: InputDecoration(hintText: " Address"),
+                    controller: _controllerAddress,
                   ),
                 ),
                 Container(
@@ -88,12 +95,14 @@ class _MyHomepageState extends State<MyHomepage> {
   void passDataToSecondScreen(BuildContext context) {
     String sentFullName = _controllerFullName.text;
     String sentPhoneNumber = _controllerPhoneNumber.text;
+    String setAddress = _controllerAddress.text;
     Navigator.push(
         context,
         MaterialPageRoute(
             builder: (context) => SecondScreen(
                   fullName: sentFullName,
                   phoneNumber: sentPhoneNumber,
+                  address: setAddress,
                 )));
   }
 }

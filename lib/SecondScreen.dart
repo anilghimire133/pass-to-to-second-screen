@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
-class SecondScreen extends StatelessWidget {
+class SecondScreen extends StatefulWidget {
   String fullName;
   String phoneNumber;
-  SecondScreen({Key key, @required this.fullName,this.phoneNumber}) :super (
-    key: key
-  );
+  String address;
+
+  SecondScreen(
+      {Key key, @required this.fullName, this.phoneNumber, this.address})
+      : super(key: key);
+
+  @override
+  _SecondScreenState createState() => _SecondScreenState();
+}
+
+class _SecondScreenState extends State<SecondScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,28 +21,27 @@ class SecondScreen extends StatelessWidget {
         title: Text("SecondScreen"),
       ),
       body: Container(
-        height: 300,
-        color: Colors.deepOrangeAccent,
-        alignment: Alignment.center,
-margin: EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-         children: [
-           Container(
-             child: Text(fullName,style: TextStyle(
-               fontSize: 20,
-               fontWeight: FontWeight.bold
-             ),),
-           ),
-           Container(
-             child: Text(phoneNumber,style: TextStyle(
-                 fontSize: 20,
-                 fontWeight: FontWeight.bold
-             ),),
-           ),
-         ],
+        padding: const EdgeInsets.all(16.0),
+        child: Row(
+          children: [
+            Text(widget.fullName, style: getStyle()),
+            SizedBox(width: 30),
+            Text(
+              widget.address,
+              style: getStyle(),
+            ),
+            SizedBox(width: 30),
+            Text(
+              widget.phoneNumber,
+              style: getStyle(),
+            ),
+          ],
         ),
       ),
     );
+  }
+
+  getStyle() {
+    return TextStyle(fontSize: 20);
   }
 }
